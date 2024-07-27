@@ -332,6 +332,10 @@ export default class SpellList extends React.Component {
     render() {
         var visibleSpells = this.state.visibleSpells;
         var truncated = false;
+        if (this.state.criteria.displayMode == 'List' && visibleSpells.length > this.state.maxRows) {
+            visibleSpells = visibleSpells.slice(0, this.state.maxRows);
+            truncated = true;
+        }
 
         var selectedSpell = this.state.selectedSpell;
         if ((!selectedSpell || !this.buildFilter()(selectedSpell)) && visibleSpells.length > 0)
