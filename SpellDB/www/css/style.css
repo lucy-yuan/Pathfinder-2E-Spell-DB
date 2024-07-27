@@ -15566,6 +15566,11 @@ readers do not read off random characters that represent icons */
   .spell-search {
     display: none;
   }
+  .container {
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+  }
 }
 @page {
   margin-top: 0.5in;
@@ -15583,10 +15588,6 @@ readers do not read off random characters that represent icons */
 }
 #app > .light, #app > .dark {
   min-height: 100vh;
-}
-
-.container {
-  max-width: 100%;
 }
 
 .light {
@@ -15874,10 +15875,14 @@ a {
   margin-top: 3px;
   margin-bottom: 3px;
 }
-.spellDetail .mainText p, .spellDetail .mainText li, .spellDetail .mainText td {
+.spellDetail .mainText p, .spellDetail .mainText li, .spellDetail .mainText table {
+  width: 100%;
   font-family: "ff-good-web-pro", sans-serif;
   font-size: 1rem;
   line-height: 1;
+}
+.spellDetail .mainText p th, .spellDetail .mainText p td, .spellDetail .mainText li th, .spellDetail .mainText li td, .spellDetail .mainText table th, .spellDetail .mainText table td {
+  font-size: 0.8rem;
 }
 .spellDetail .footerNote {
   font-family: "ff-good-web-pro", sans-serif;
