@@ -1,9 +1,13 @@
 CACHE MANIFEST
-# Cache Buster UTC Offset: 1710453794595
+# Cache Buster UTC Offset: 1722097328048
 # Cache Everything
 
 css/style.css
 css/style.css.map
+fonts/FFGoodPro-Light.ttf
+fonts/FFGoodPro-Medium.ttf
+fonts/FFGoodProCond-Bold.ttf
+fonts/FFGoodProCond-Medium.ttf
 images/action-1-dark.png
 images/action-1.png
 images/action-2-dark.png

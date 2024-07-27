@@ -1,6 +1,28 @@
 ﻿@import "../../node_modules/bootstrap-css-only/css/bootstrap.min";
 @import "../../node_modules/@fortawesome/fontawesome-free/css/all";
-
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+@media print {
+    div.spellDetail {
+        break-inside: avoid;
+    }
+    .spell-search {
+        display: none;
+    }
+}
+@page {
+    margin-top: 0.5in;
+    margin-bottom: 0.2in;
+    margin-left: 0in;
+    margin-right: 0in;
+}
+@font-face {
+    font-family: 'ff-good-web-pro';
+    src: url(../fonts/FFGoodPro-Light.ttf) format('truetype')
+}
+@font-face {
+    font-family: 'ff-good-web-pro-condensed';
+    src: url(../fonts/FFGoodProCond-Medium.ttf) format('truetype')
+}
 
 $pathfinderRed: #5e0000;
 $pathfinderGold: #dcb07b;
@@ -32,6 +54,10 @@ $prepareIcon: #28a745;
 
 #app > .light, #app > .dark {
     min-height: 100vh;
+}
+
+.container {
+    max-width: 100%;
 }
 
 .light {
@@ -231,6 +257,9 @@ a { cursor: pointer; }
 }
 
 .spellDetail {
+    height: 490px;
+    overflow: scroll;
+
     > div, > ul {
         padding-left: 5px;
         padding-right: 5px;
@@ -243,9 +272,12 @@ a { cursor: pointer; }
         display: flex;
         align-items: flex-start;
 
+        font-family: 'Oswald', sans-serif;
+        font-size: 1.5rem;
+        line-height: 1.2;
+        text-transform: uppercase;
+
         .spellName {
-            font-weight: bold;
-            text-transform: uppercase;
             flex-grow: 1;
         }
 
@@ -259,7 +291,7 @@ a { cursor: pointer; }
             float: right;
 
             .bookmark {
-                display: inline-block;
+                display: none;
                 padding: 0 10px 0 0;
 
                 &.active {
@@ -275,6 +307,7 @@ a { cursor: pointer; }
 
     .traits {
         display: block;
+        padding: 3px;
 
         li {
             display: inline-block;
@@ -286,8 +319,8 @@ a { cursor: pointer; }
             list-style: none;
             text-align: center;
             padding: 3px 6px;
-            font-size: 10px;
-            font-weight: bold;
+            font-size: 0.75rem;
+            font-family: 'ff-good-web-pro-condensed', sans-serif;
             text-transform: uppercase;
 
             &:last-child {
@@ -313,6 +346,10 @@ a { cursor: pointer; }
     }
 
     .header {
+        font-family: 'ff-good-web-pro', sans-serif;
+        font-size: 1rem;
+        line-height: 1.2;
+        border-bottom: 1px solid #000000;
 
         .castingToken, .headerElement {
             &::after {
@@ -364,10 +401,15 @@ a { cursor: pointer; }
         }
     }
     .mainText {
-        p {
+        p, li, td {
+            font-family: 'ff-good-web-pro', sans-serif;
+            font-size: 1rem;
+            line-height: 1;
         }
     }
     .footerNote {
+        font-family: 'ff-good-web-pro', sans-serif;
+        font-size: 0.8rem;
         font-style: italic;
     }
 

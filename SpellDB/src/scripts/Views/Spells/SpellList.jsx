@@ -1,4 +1,5 @@
 ﻿import React from 'react';
+import Grid from '@material-ui/core/Grid';
 //import { ipcRenderer } from 'electron';
 import SpellSearch from './SpellSearch.jsx';
 import SpellListItem from './SpellListItem.jsx';
@@ -331,10 +332,6 @@ export default class SpellList extends React.Component {
     render() {
         var visibleSpells = this.state.visibleSpells;
         var truncated = false;
-        if (visibleSpells.length > this.state.maxRows) {
-            visibleSpells = visibleSpells.slice(0, this.state.maxRows);
-            truncated = true;
-        }
 
         var selectedSpell = this.state.selectedSpell;
         if ((!selectedSpell || !this.buildFilter()(selectedSpell)) && visibleSpells.length > 0)
@@ -386,24 +383,26 @@ export default class SpellList extends React.Component {
                 <div className="row">
                     <div className={"col-sm spellList" + this.state.criteria.displayMode}>
                         <ul className="list-group">
-                            {visibleSpells.map((s) => {
-                                if (this.state.criteria.displayMode == "Details")
-                                    return <SpellDetail
-                                        key={s.name}
-                                        spell={s}
-                                        bookmarked={this.isBookmarked(s)}
-                                        bookmarkManager={this.props.bookmarkManager}
-                                        vancian={this.getVancianInfo(s)}
-                                        vancianMode={this.state.vancianMode}
-                                    />;
-                                else
-                                    return (<SpellListItem
-                                        key={s.name}
-                                        spell={s}
-                                        selected={s == selectedSpell}
-                                        onSelect={this.selectSpell}
-                                    />);
-                            })}
+                            <Grid container spacing={2}>
+                                {visibleSpells.map((s) => {
+                                    if (this.state.criteria.displayMode == "Details")
+                                        return <Grid item xs={4}><SpellDetail
+                                            key={s.name}
+                                            spell={s}
+                                            bookmarked={this.isBookmarked(s)}
+                                            bookmarkManager={this.props.bookmarkManager}
+                                            vancian={this.getVancianInfo(s)}
+                                            vancianMode={this.state.vancianMode}
+                                        /></Grid>;
+                                    else
+                                        return (<SpellListItem
+                                            key={s.name}
+                                            spell={s}
+                                            selected={s == selectedSpell}
+                                            onSelect={this.selectSpell}
+                                        />);
+                                })}
+                            </Grid>
                             {truncated ? <li className="list-group-item list-group-item-info" onClick={this.showMore}>Show More...</li> : null}
                         </ul>
                     </div>
