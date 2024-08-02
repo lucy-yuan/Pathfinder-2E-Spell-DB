@@ -537,16 +537,17 @@ img.actions {
     }
 
     .filters {
-        .level-row, .rarity-row, .tradition-row {
+        .level-row, .rarity-row, .tradition-row, .source-row {
             display: flex;
             width: 100%;
 
-            .level-col, .rarity-col, .tradition-col {
+            .level-col, .rarity-col, .tradition-col, .source-col {
                 flex-basis: 0;
                 //flex-grow: 1;
                 max-width: 100%;
                 padding: 3px;
                 text-align: center;
+                white-space: nowrap;
 
                 input[type=checkbox] {
                     display: none;

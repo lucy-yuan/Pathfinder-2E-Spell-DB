@@ -5,31 +5,32 @@ export default class SpellSearch extends React.Component {
         super(props);
 
         this.handleCriteriaChange = this.handleCriteriaChange.bind(this);
-        this.handleLevelChange = this.handleLevelChange.bind(this);
+        this.handleFilterChange = this.handleFilterChange.bind(this);
     }
-    handleLevelChange(level, checked) {
-        if (level == 'x') this.props.onCriteriaReset();
-        else {
-            var levels = [... this.props.levels];
-            var idx = levels.indexOf(level);
-            if (idx == -1 && checked) levels.push(level);
-            else if (idx != -1 && !checked) levels.splice(idx, 1);
-            this.props.onCriteriaChange('levels', levels);
+    handleFilterChange(filterType, filterValue, checked) {
+        if (filterValue === 'x') {
+            this.props.onCriteriaChange(filterType, []);
+        } else {
+            var filters = [];
+            switch (filterType) {
+                case 'levels':
+                    filters = [... this.props.levels];
+                    break;
+                case 'rarities':
+                    filters = [... this.props.rarities];
+                    break;
+                case 'traditions':
+                    filters = [... this.props.traditions];
+                    break;
+                case 'sources':
+                    filters = [... this.props.sources];
+                    break;
+            }
+            var idx = filters.indexOf(filterValue);
+            if (idx == -1 && checked) filters.push(filterValue);
+            else if (idx != -1 && !checked) filters.splice(idx, 1);
+            this.props.onCriteriaChange(filterType, filters);
         }
-    }
-    handleRarityChange(rarity, checked) {
-        var rarities = [... this.props.rarities];
-        var idx = rarities.indexOf(rarity);
-        if (idx == -1 && checked) rarities.push(rarity);
-        else if (idx != -1 && !checked) rarities.splice(idx, 1);
-        this.props.onCriteriaChange('rarities', rarities);
-    }
-    handleTraditionChange(tradition, checked) {
-        var traditions = [... this.props.traditions];
-        var idx = traditions.indexOf(tradition);
-        if (idx == -1 && checked) traditions.push(tradition);
-        else if (idx != -1 && !checked) traditions.splice(idx, 1);
-        this.props.onCriteriaChange('traditions', traditions);
     }
     handleCriteriaChange(event) {
         const target = event.target;
@@ -47,36 +48,36 @@ export default class SpellSearch extends React.Component {
         var spellOption = null;
         var showSpellOptions = (this.props.spellType && this.props.spellTypes.find(t => t.name == this.props.spellType).options.length > 1);
 
-        var levelRows = [
-            Array.from({ length: 6 }, (v, i) => i == 0 ? 'C' : i),
-            Array.from({ length: 5 }, (v, i) => i + 6).concat('x')
-        ];
-        var rarityOptions = ['common', 'uncommon', 'rare'];
-        var traditionOptions = ['arcane', 'divine', 'occult', 'primal', 'none'];
+        var levelOptions = Array.from({ length: 11}, (_, i) => i == 0 ? 'C': i).concat('x');
+        var rarityOptions = ['common', 'uncommon', 'rare', 'x'];
+        var traditionOptions = ['arcane', 'divine', 'occult', 'primal', 'none', 'x'];
+        var sourceOptions = ['Player Core', 'Player Core 2', 'Rage of Elements', 'Secrets of Magic', 'x'];
 
         return (
             <form className="spell-search row" onSubmit={this.formSubmitAttempted}>
                 <div className="col-md filters">
-                    {levelRows.map((lr) => {
-                        return <div className="level-row" key={lr[0]}>
-                            {lr.map((l) => {
-                                return <span key={l} className="level-col">
-                                    <input id={"spell-level-" + l} name='level' type="checkbox" checked={this.props.levels.indexOf(l) != -1} onChange={(ev) => this.handleLevelChange(l, ev.target.checked)} value={l} />
-                                    <label htmlFor={"spell-level-" + l} className="form-check-label">{String(l)}</label>
-                                </span>;
-                            })}
-                        </div>;
-                    })}
+                    <div className="level-row">{levelOptions.map((l) => {
+                        return <span key={l} className="level-col">
+                            <input id={"level-" + l} name='level' type="checkbox" checked={this.props.levels.indexOf(l) != -1} onChange={(ev) => this.handleFilterChange('levels', l, ev.target.checked)} value={l} />
+                            <label htmlFor={"level-" + l} className="form-check-label">{String(l)}</label>
+                        </span>;
+                    })}</div>
                     <div className="tradition-row">{traditionOptions.map((t) => {
                         return <span key={t} className="tradition-col">
-                            <input id={"tradition-" + t} name='tradition' type="checkbox" checked={this.props.traditions.indexOf(t) != -1} onChange={(ev) => this.handleTraditionChange(t, ev.target.checked)} value={t} />
+                            <input id={"tradition-" + t} name='tradition' type="checkbox" checked={this.props.traditions.indexOf(t) != -1} onChange={(ev) => this.handleFilterChange('traditions', t, ev.target.checked)} value={t} />
                             <label htmlFor={"tradition-" + t} className="form-check-label">{String(t)}</label>
                         </span>;
                     })}</div>
                     <div className="rarity-row">{rarityOptions.map((r) => {
                         return <span key={r} className="rarity-col">
-                            <input id={"rarity-" + r} name='rarity' type="checkbox" checked={this.props.rarities.indexOf(r) != -1} onChange={(ev) => this.handleRarityChange(r, ev.target.checked)} value={r} />
+                            <input id={"rarity-" + r} name='rarity' type="checkbox" checked={this.props.rarities.indexOf(r) != -1} onChange={(ev) => this.handleFilterChange('rarities', r, ev.target.checked)} value={r} />
                             <label htmlFor={"rarity-" + r} className="form-check-label">{String(r)}</label>
+                        </span>;
+                    })}</div>
+                    <div className="source-row">{sourceOptions.map((s) => {
+                        return <span key={s} className="source-col">
+                            <input id={"source-" + s} name='source' type="checkbox" checked={this.props.sources.indexOf(s) != -1} onChange={(ev) => this.handleFilterChange('sources', s, ev.target.checked)} value={s} />
+                            <label htmlFor={"source-" + s} className="form-check-label">{String(s)}</label>
                         </span>;
                     })}</div>
                 </div>
@@ -111,8 +112,6 @@ export default class SpellSearch extends React.Component {
                             </div>
                         </div>
                         : null}
-                </div>
-                <div className="col-md sort">
                     <div className="form-row">
                         <label htmlFor="sortBy" className="col-form-label form-label">Sort By</label>
                         <div className="col">

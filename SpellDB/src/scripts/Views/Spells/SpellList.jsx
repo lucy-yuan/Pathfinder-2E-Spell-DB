@@ -27,7 +27,8 @@ var getDefaultCriteria = () => {
         'displayMode': 'Details',
         'levels': [],
         'rarities': [],
-        'traditions': []
+        'traditions': [],
+        'sources': []
     };
 };
 
@@ -267,6 +268,10 @@ export default class SpellList extends React.Component {
                 });
                 if (!valid) return false;
             }
+            if (criteria.sources.length > 0) {
+                var source = spell.source.split(' pg. ')[0];
+                if (!criteria.sources.includes(source)) return false;
+            }
             return true;
         };
     }
@@ -381,6 +386,7 @@ export default class SpellList extends React.Component {
                             levels={this.state.criteria.levels}
                             rarities={this.state.criteria.rarities}
                             traditions={this.state.criteria.traditions}
+                            sources={this.state.criteria.sources}
                             displayMode={this.state.criteria.displayMode}
                             showDetails={this.state.criteria.showDetails}
                             onCriteriaChange={this.criteriaChange}
