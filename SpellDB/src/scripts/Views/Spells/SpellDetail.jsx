@@ -48,7 +48,7 @@ export default class SpellDetail extends React.PureComponent {
             <div className="spellDetail clearfix">
                 <div className="title">
                     <span className="spellName">
-                        {spell.name}
+                        {spell.name} <ActionIcons action={spell.action} /> {spell.actionMax && <span> to <ActionIcons action={spell.actionMax} /></span> }
                     </span>
                     <span className="spellClass">
                         
@@ -75,8 +75,6 @@ export default class SpellDetail extends React.PureComponent {
                     {spell.traits.map((t, index) => <Trait key={index} trait={t} />)}
                 </ul>
                 <div className="header">
-                    {spell.traditions && <div><strong>Traditions</strong> {spell.traditions.join(", ")}</div>}
-                    <div><strong>Cast</strong> <ActionIcons action={spell.action} /> {spell.actionMax && <span> to <ActionIcons action={spell.actionMax} /></span> } {spell.components && spell.components.join(spell.componentsSeparator || ", ")}</div>
                     {headerTokens.map((t) => {
                         return <span key={t.title} className="headerElement"><strong>{t.title}</strong> {t.value}</span>
                     })}

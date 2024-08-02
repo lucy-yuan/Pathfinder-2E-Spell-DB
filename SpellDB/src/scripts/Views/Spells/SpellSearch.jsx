@@ -17,6 +17,20 @@ export default class SpellSearch extends React.Component {
             this.props.onCriteriaChange('levels', levels);
         }
     }
+    handleRarityChange(rarity, checked) {
+        var rarities = [... this.props.rarities];
+        var idx = rarities.indexOf(rarity);
+        if (idx == -1 && checked) rarities.push(rarity);
+        else if (idx != -1 && !checked) rarities.splice(idx, 1);
+        this.props.onCriteriaChange('rarities', rarities);
+    }
+    handleTraditionChange(tradition, checked) {
+        var traditions = [... this.props.traditions];
+        var idx = traditions.indexOf(tradition);
+        if (idx == -1 && checked) traditions.push(tradition);
+        else if (idx != -1 && !checked) traditions.splice(idx, 1);
+        this.props.onCriteriaChange('traditions', traditions);
+    }
     handleCriteriaChange(event) {
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -37,10 +51,12 @@ export default class SpellSearch extends React.Component {
             Array.from({ length: 6 }, (v, i) => i == 0 ? 'C' : i),
             Array.from({ length: 5 }, (v, i) => i + 6).concat('x')
         ];
+        var rarityOptions = ['common', 'uncommon', 'rare'];
+        var traditionOptions = ['arcane', 'divine', 'occult', 'primal', 'none'];
 
         return (
             <form className="spell-search row" onSubmit={this.formSubmitAttempted}>
-                <div className="col-md levels">
+                <div className="col-md filters">
                     {levelRows.map((lr) => {
                         return <div className="level-row" key={lr[0]}>
                             {lr.map((l) => {
@@ -51,6 +67,18 @@ export default class SpellSearch extends React.Component {
                             })}
                         </div>;
                     })}
+                    <div className="tradition-row">{traditionOptions.map((t) => {
+                        return <span key={t} className="tradition-col">
+                            <input id={"tradition-" + t} name='tradition' type="checkbox" checked={this.props.traditions.indexOf(t) != -1} onChange={(ev) => this.handleTraditionChange(t, ev.target.checked)} value={t} />
+                            <label htmlFor={"tradition-" + t} className="form-check-label">{String(t)}</label>
+                        </span>;
+                    })}</div>
+                    <div className="rarity-row">{rarityOptions.map((r) => {
+                        return <span key={r} className="rarity-col">
+                            <input id={"rarity-" + r} name='rarity' type="checkbox" checked={this.props.rarities.indexOf(r) != -1} onChange={(ev) => this.handleRarityChange(r, ev.target.checked)} value={r} />
+                            <label htmlFor={"rarity-" + r} className="form-check-label">{String(r)}</label>
+                        </span>;
+                    })}</div>
                 </div>
                 <div className="col-md criteria">
                     <div className="form-row">

@@ -25,7 +25,9 @@ var getDefaultCriteria = () => {
         'spellOption': '',
         'sortBy': 'Level',
         'displayMode': 'Details',
-        'levels': []
+        'levels': [],
+        'rarities': [],
+        'traditions': []
     };
 };
 
@@ -252,6 +254,19 @@ export default class SpellList extends React.Component {
                 }
                 else if (criteria.levels.indexOf(spell.level) === -1) return false;
             }
+            if (criteria.rarities.length > 0) {
+                var rarity = ['uncommon', 'rare'].includes(spell.traits[0]) ? spell.traits[0] : 'common';
+                if (!criteria.rarities.includes(rarity)) return false;
+            }
+            if (criteria.traditions.length > 0) {
+                var valid = false;
+                criteria.traditions.forEach((t) => {
+                    if (t === 'none' && spell.traditions) return false;
+                    if (t === 'none' && !spell.traditions) valid = true;
+                    else if (spell.traditions && spell.traditions.includes(t)) valid = true;
+                });
+                if (!valid) return false;
+            }
             return true;
         };
     }
@@ -364,6 +379,8 @@ export default class SpellList extends React.Component {
                             spellName={this.state.criteria.spellName}
                             sortBy={this.state.criteria.sortBy}
                             levels={this.state.criteria.levels}
+                            rarities={this.state.criteria.rarities}
+                            traditions={this.state.criteria.traditions}
                             displayMode={this.state.criteria.displayMode}
                             showDetails={this.state.criteria.showDetails}
                             onCriteriaChange={this.criteriaChange}

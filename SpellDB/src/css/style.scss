@@ -280,6 +280,10 @@ a { cursor: pointer; }
 
         .spellName {
             flex-grow: 1;
+
+            img.actions {
+                padding-bottom: 3px;
+            }
         }
 
         .dark & {
@@ -319,8 +323,8 @@ a { cursor: pointer; }
             border-left: 3px solid $pathfinderGold;
             list-style: none;
             text-align: center;
-            padding: 3px 6px;
-            font-size: 0.75rem;
+            padding: 2px 4px;
+            font-size: 0.85rem;
             font-family: 'ff-good-web-pro-condensed', sans-serif;
             text-transform: uppercase;
 
@@ -532,14 +536,14 @@ img.actions {
         }
     }
 
-    .levels {
-        .level-row {
+    .filters {
+        .level-row, .rarity-row, .tradition-row {
             display: flex;
             width: 100%;
 
-            .level-col {
+            .level-col, .rarity-col, .tradition-col {
                 flex-basis: 0;
-                flex-grow: 1;
+                //flex-grow: 1;
                 max-width: 100%;
                 padding: 3px;
                 text-align: center;
