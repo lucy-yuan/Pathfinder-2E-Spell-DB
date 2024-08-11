@@ -329,8 +329,14 @@ export default class SpellList extends React.Component {
                     return 0;
                 case "Level":
                     if (lhs.level - rhs.level != 0) return lhs.level - rhs.level;
-                    if (lhs.type == "Cantrip" && rhs.type != "Cantrip") return -1;
-                    if (lhs.type != "Cantrip" && rhs.type == "Cantrip") return 1;
+                    var seq = ["Cantrip", "Spell", "Focus", "Feat"];
+                    var lhsA = seq.indexOf(lhs.type);
+                    var rhsA = seq.indexOf(rhs.type);
+                    if (lhsA != -1 && rhsA == -1) return -1; // Assume if it's not in the list it's higher level
+                    if (lhsA == -1 && rhsA != -1) return 1;
+                    if (lhsA < rhsA) return -1;
+                    if (lhsA > rhsA) return 1;
+                    // Fallback to alpha
                     if (lhs.name.toLowerCase() < rhs.name.toLowerCase()) return -1;
                     if (lhs.name.toLowerCase() > rhs.name.toLowerCase()) return 1;
                     return 0;

@@ -3,22 +3,36 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
 @media print {
     div.spellDetail {
+        height: 4.4in;
         break-inside: avoid;
     }
     .spell-search {
         display: none;
     }
     .container {
-        max-width: 100%;
-        margin: 0;
+        margin: 10px;
         padding: 0;
+    }
+    div:has(> .spellDetail) {
+        background:
+            linear-gradient(to right, black 0.5px, transparent 0.5px) 0 0,
+            linear-gradient(to right, black 0.5px, transparent 0.5px) 0 100%,
+            linear-gradient(to left, black 0.5px, transparent 0.5px) 100% 0,
+            linear-gradient(to left, black 0.5px, transparent 0.5px) 100% 100%,
+            linear-gradient(to bottom, black 0.5px, transparent 0.5px) 0 0,
+            linear-gradient(to bottom, black 0.5px, transparent 0.5px) 100% 0,
+            linear-gradient(to top, black 0.5px, transparent 0.5px) 0 100%,
+            linear-gradient(to top, black 0.5px, transparent 0.5px) 100% 100%;
+        background-repeat: no-repeat;
+        background-size: 20px 20px;
+    }    
+    .bookmark {
+        display: none;
     }
 }
 @page {
-    margin-top: 0.5in;
-    margin-bottom: 0.2in;
-    margin-left: 0in;
-    margin-right: 0in;
+    size: Letter;
+    margin: 0.15in;
 }
 @font-face {
     font-family: 'ff-good-web-pro';
@@ -83,6 +97,16 @@ $prepareIcon: #28a745;
         background-color: #3498DB;
         color: $dark-text;
     }
+}
+
+.spellDetail {
+    overflow-y: scroll;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+.spellDetail::-webkit-scrollbar { /* WebKit */
+    width: 0;
+    height: 0;
 }
 
 .switch {
@@ -258,7 +282,6 @@ a { cursor: pointer; }
 }
 
 .spellDetail {
-    height: 490px;
     overflow: scroll;
 
     > div, > ul {
@@ -294,9 +317,9 @@ a { cursor: pointer; }
         .spellClass {
             display: block;
             float: right;
+            white-space: nowrap;
 
             .bookmark {
-                display: none;
                 padding: 0 10px 0 0;
 
                 &.active {

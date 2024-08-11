@@ -934,30 +934,6 @@
       "oldName": "know direction"
     },
     {
-      "nethysUrl": "https://2e.aonprd.com/Spells.aspx?ID=171",
-      "name": "Light",
-      "traits": [
-        "cantrip",
-        "concentrate",
-        "light",
-        "manipulate"
-      ],
-      "type": "Cantrip",
-      "level": 1,
-      "source": "Player Core pg. 340",
-      "traditions": [
-        "arcane",
-        "divine",
-        "occult",
-        "primal"
-      ],
-      "cast": "",
-      "action": "2",
-      "range": "120 feet",
-      "duration": "until your next daily preparations",
-      "description": "You create an orb of light that sheds bright light in a 20-foot radius (and dim light for the next 20 feet) in a color you choose. If you create the light in the same space as a willing creature, you can attach the light to the creature, causing it to float near that creature as it moves. You can Sustain the spell to move the light up to 60 feet; you can attach or detach it from a creature as part of this movement.  \n  \n You can Dismiss the spell. If you Cast the Spell while you already have four light spells active, you must choose one of the existing spells to end.\n\n  **Heightened (4th)**  The orb sheds light in a 60-foot radius (and dim light for the next 60 feet)."
-    },
-    {
       "nethysUrl": "https://2e.aonprd.com/Spells.aspx?ID=1585",
       "name": "Light",
       "traits": [
@@ -3468,6 +3444,28 @@
       "defense": "AC",
       "duration": "until the end of the target's next turn",
       "description": "A blazing band of fire arcs through the air, lighting your opponent and the ground they stand upon on fire. Make a spell attack roll against the target's AC. The ray deals 2d6 fire damage on a hit (or double damage on a critical hit). On any result other than a critical failure, the ground in the target's space catches fire, dealing 1d6 fire damage to each creature that ends its turn in one of the squares.\n\n  **Heightened (+1)**  The ray's initial damage increases by 2d6, and the fire damage dealt by the burning space increases by 1d6."
+    },
+    {
+      "nethysUrl": "--",
+      "name": "Flurry Of Claws",
+      "traits": [
+        "uncommon",
+        "attack",
+        "concentrate",
+        "focus",
+        "manipulate",
+        "oracle"
+      ],
+      "type": "Focus",
+      "level": 1,
+      "source": "--",
+      "mystery": "draconic",
+      "cast": "",
+      "action": "2",
+      "range": "30 feet",
+      "targets": "2 creatures no more than 10 feet from each other",
+      "defense": "AC",
+      "description": "Vicious dragon claws appear and slash at two nearby foes. Make a spell attack roll against each creature. This counts as two attacks for your multiple attack penalty, but the penalty doesn’t increase until you’ve made both attacks. On a hit, the creatures takes 1d8 slashing plus 1d4 additional damage of a type determined by the magical tradition related to the dragon that influenced your bloodline: **arcane** force, **divine** spirit, **occult** mental, or **primal** fire.\n\n  **Heightened (+1)**  The initial damage increases by 1d8 and the additional damage increases by 1d4"
     },
     {
       "nethysUrl": "https://2e.aonprd.com/Spells.aspx?ID=1896",
@@ -11218,7 +11216,6 @@
       "nethysUrl": "https://2e.aonprd.com/Spells.aspx?ID=1447",
       "name": "Bane",
       "traits": [
-        "aura",
         "concentrate",
         "manipulate",
         "mental"
@@ -34065,5 +34062,60 @@
         "verbal"
       ],
       "oldName": "manifestation"
+    },
+    {
+      "nethysUrl": "",
+      "name": "Cringe",
+      "traits": [
+        "emotion",
+        "kobold",
+        "mental",
+        "visual"
+      ],
+      "type": "Feat",
+      "level": 1,
+      "source": "Player Core 2 pg. 22",
+      "cast": "",
+      "targets": "",
+      "action": "reaction",
+      "range": "",
+      "area": "",
+      "trigger": "A creature you are aware of critically succeeds on a Strike against you and would deal damage to you.",
+      "saving throw": "",
+      "duration": "",
+      "description": "With pitiful posturing, you cause your foe to pull back a deadly attack. The attacking creature takes a circumstance penalty to the damage of the triggering Strike equal to your level + 2. This penalty applies after doubling the damage for a critical hit. The attacker is then immune to your Cringe for 24 hours."
+    },
+    {
+      "nethysUrl": "",
+      "name": "Forager",
+      "traits": [
+        "general",
+        "skill"
+      ],
+      "type": "Feat",
+      "level": 1,
+      "source": "Player Core 1 pg. 256",
+      "prerequisites": "trained in Survival",
+      "description": "While using Survival to Subsist, if you roll any result worse than a success, you get a success. On a success, you can provide subsistence living for yourself and four additional creatures, and on a critical success, you can take care of twice as many additional creatures. You can choose to support half the number of creatures with a comfortable living.\n   Increase the number of additional creatures you feed on a success to eight if you’re an expert in Survival, 16 if you’re a master, and 32 if you’re legendary."
+    },
+    {
+      "nethysUrl": "",
+      "name": "Whispers Of Weakness",
+      "traits": [
+        "cursebound",
+        "divine",
+        "oracle"
+      ],
+      "type": "Feat",
+      "level": 1,
+      "source": "Player Core 2 pg. 138",
+      "cast": "",
+      "targets": "1 creature",
+      "action": "1",
+      "range": "60 feet",
+      "area": "",
+      "saving throw": "",
+      "duration": "",
+      "description": "Voices whisper to you how to best lay a creature low. You target one creature within 60 feet; if it has any weaknesses, you learn them, as well as which of its saving throw modifiers is lowest. You also come to understand its movements, gaining a +2 status bonus to your next attack roll (or skill check made as part of an attack action) against that foe before the end of your turn. The target is then temporarily immune for 1 day."
     }
   ]

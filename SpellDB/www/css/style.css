@@ -15561,22 +15561,28 @@ readers do not read off random characters that represent icons */
 
 @media print {
   div.spellDetail {
+    height: 4.4in;
     break-inside: avoid;
   }
   .spell-search {
     display: none;
   }
   .container {
-    max-width: 100%;
-    margin: 0;
+    margin: 10px;
     padding: 0;
+  }
+  div:has(> .spellDetail) {
+    background: linear-gradient(to right, black 0.5px, transparent 0.5px) 0 0, linear-gradient(to right, black 0.5px, transparent 0.5px) 0 100%, linear-gradient(to left, black 0.5px, transparent 0.5px) 100% 0, linear-gradient(to left, black 0.5px, transparent 0.5px) 100% 100%, linear-gradient(to bottom, black 0.5px, transparent 0.5px) 0 0, linear-gradient(to bottom, black 0.5px, transparent 0.5px) 100% 0, linear-gradient(to top, black 0.5px, transparent 0.5px) 0 100%, linear-gradient(to top, black 0.5px, transparent 0.5px) 100% 100%;
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+  }
+  .bookmark {
+    display: none;
   }
 }
 @page {
-  margin-top: 0.5in;
-  margin-bottom: 0.2in;
-  margin-left: 0in;
-  margin-right: 0in;
+  size: Letter;
+  margin: 0.15in;
 }
 @font-face {
   font-family: "ff-good-web-pro";
@@ -15611,6 +15617,17 @@ readers do not read off random characters that represent icons */
 .dark .list-group-item-info, .dark .alert-info {
   background-color: #3498DB;
   color: #EEE;
+}
+
+.spellDetail {
+  overflow-y: scroll;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+.spellDetail::-webkit-scrollbar { /* WebKit */
+  width: 0;
+  height: 0;
 }
 
 .switch {
@@ -15764,7 +15781,6 @@ a {
 }
 
 .spellDetail {
-  height: 490px;
   overflow: scroll;
 }
 .spellDetail > div, .spellDetail > ul {
@@ -15795,9 +15811,9 @@ a {
 .spellDetail .title .spellClass {
   display: block;
   float: right;
+  white-space: nowrap;
 }
 .spellDetail .title .spellClass .bookmark {
-  display: none;
   padding: 0 10px 0 0;
 }
 .spellDetail .title .spellClass .bookmark.active {
@@ -15805,6 +15821,9 @@ a {
 }
 .dark .spellDetail .title .spellClass .bookmark.active {
   color: #b300b2;
+}
+.spellDetail .title .spellClass .ca-cog {
+  display: none;
 }
 .spellDetail .traits {
   display: block;

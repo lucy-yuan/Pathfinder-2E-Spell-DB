@@ -33,6 +33,7 @@ export default class SpellDetail extends React.PureComponent {
         if (spell.range) headerTokens.push({ 'title': 'Range', 'value': spell.range });
         if (spell.area) headerTokens.push({ 'title': 'Area', 'value': spell.area });
         if (spell.targets) headerTokens.push({ 'title': 'Targets', 'value': spell.targets });
+        if (spell.prerequisites) headerTokens.push({ 'title': 'Prerequisites', 'value': spell.prerequisites });
         if (spell.duration) headerTokens.push({ 'title': 'Duration', 'value': spell.duration });
         if (spell.cost) headerTokens.push({ 'title': 'Cost', 'value': spell.cost });
         if (spell.requirements) headerTokens.push({ 'title': "Requirements", 'value': spell.requirements });
