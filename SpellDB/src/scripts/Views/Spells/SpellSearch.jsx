@@ -51,7 +51,7 @@ export default class SpellSearch extends React.Component {
         var levelOptions = Array.from({ length: 11}, (_, i) => i == 0 ? 'C': i).concat('x');
         var rarityOptions = ['common', 'uncommon', 'rare', 'x'];
         var traditionOptions = ['arcane', 'divine', 'occult', 'primal', 'none', 'x'];
-        var sourceOptions = ['Player Core', 'Player Core 2', 'Rage of Elements', 'Secrets of Magic', 'x'];
+        var sourceOptions = ['Player Core', 'Player Core 2', 'Rage of Elements', 'Howl of the Wild', 'Secrets of Magic', 'x'];
 
         return (
             <form className="spell-search row" onSubmit={this.formSubmitAttempted}>
