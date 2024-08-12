@@ -15,6 +15,14 @@
       {
         "name": "Cantrip",
         "value": "Cantrip"
+      },
+      {
+        "name": "Feat",
+        "value": "Feat"
+      },
+      {
+        "name": "Condition",
+        "value": "Condition"
       }
     ]
   },

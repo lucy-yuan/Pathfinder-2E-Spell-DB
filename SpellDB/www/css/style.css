@@ -15564,6 +15564,10 @@ readers do not read off random characters that represent icons */
     height: 4.4in;
     break-inside: avoid;
   }
+  div.cardSize {
+    padding: 2mm;
+    max-height: 112mm;
+  }
   .spell-search {
     display: none;
   }
@@ -15575,6 +15579,11 @@ readers do not read off random characters that represent icons */
     background: linear-gradient(to right, black 0.5px, transparent 0.5px) 0 0, linear-gradient(to right, black 0.5px, transparent 0.5px) 0 100%, linear-gradient(to left, black 0.5px, transparent 0.5px) 100% 0, linear-gradient(to left, black 0.5px, transparent 0.5px) 100% 100%, linear-gradient(to bottom, black 0.5px, transparent 0.5px) 0 0, linear-gradient(to bottom, black 0.5px, transparent 0.5px) 100% 0, linear-gradient(to top, black 0.5px, transparent 0.5px) 0 100%, linear-gradient(to top, black 0.5px, transparent 0.5px) 100% 100%;
     background-repeat: no-repeat;
     background-size: 20px 20px;
+  }
+  div:has(> .cardSize) {
+    height: 116.76mm;
+    width: 83.39mm;
+    flex: none;
   }
   .bookmark {
     display: none;
@@ -15795,7 +15804,7 @@ a {
   align-items: flex-start;
   font-family: "Oswald", sans-serif;
   font-size: 1.5rem;
-  line-height: 1.2;
+  line-height: 1;
   text-transform: uppercase;
 }
 .spellDetail .title .spellName {
@@ -15821,9 +15830,6 @@ a {
 }
 .dark .spellDetail .title .spellClass .bookmark.active {
   color: #b300b2;
-}
-.spellDetail .title .spellClass .ca-cog {
-  display: none;
 }
 .spellDetail .traits {
   display: block;
@@ -15863,6 +15869,10 @@ a {
   font-size: 1rem;
   line-height: 1.2;
   border-bottom: 1px solid #000000;
+}
+.dark .spellDetail .header {
+  color: #EEE;
+  border-color: #FFF;
 }
 .spellDetail .header .castingToken::after, .spellDetail .header .headerElement::after {
   content: ", ";

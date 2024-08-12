@@ -27,7 +27,12 @@ export default class SpellDetail extends React.PureComponent {
     render() {
         var spell = this.props.spell;
         
+        var cardSize = false;
+        var actionToTheTop = true;
+        var actions = (<span><ActionIcons action={spell.action} />{(spell.actionMax && <span> to <ActionIcons action={spell.actionMax} /></span> )}</span>);
+
         var headerTokens = [];
+        if (!actionToTheTop && spell.action) headerTokens.push({'title': 'Action', 'value': actions});
         if (spell['casting-time']) headerTokens.push({ 'title': 'Casting Time', 'value': spell['casting-time'] });
         if (spell.trigger) headerTokens.push({ 'title': 'Trigger', 'value': spell.trigger });
         if (spell.range) headerTokens.push({ 'title': 'Range', 'value': spell.range });
@@ -37,6 +42,8 @@ export default class SpellDetail extends React.PureComponent {
         if (spell.duration) headerTokens.push({ 'title': 'Duration', 'value': spell.duration });
         if (spell.cost) headerTokens.push({ 'title': 'Cost', 'value': spell.cost });
         if (spell.requirements) headerTokens.push({ 'title': "Requirements", 'value': spell.requirements });
+        if (spell.value) headerTokens.push({ 'title': "Value", 'value': spell.value });
+        if (spell.affected) headerTokens.push({ 'title': "Affects", 'value': spell.affected });
 
         var bodySections = [];
         bodySections.push({ 'title': null, className: 'mainText', 'text': spell.description });
@@ -46,10 +53,10 @@ export default class SpellDetail extends React.PureComponent {
         }
 
         return (
-            <div className="spellDetail clearfix">
+            <div className={cardSize ? "spellDetail clearfix cardSize" : "spellDetail clearfix"}>
                 <div className="title">
                     <span className="spellName">
-                        {spell.name} <ActionIcons action={spell.action} /> {spell.actionMax && <span> to <ActionIcons action={spell.actionMax} /></span> }
+                        {spell.name} {(actionToTheTop && actions)}
                     </span>
                     <span className="spellClass">
                         
@@ -69,19 +76,23 @@ export default class SpellDetail extends React.PureComponent {
                         <span className={this.props.bookmarked ? "bookmark active" : "bookmark inactive"} onClick={this.toggleBookmark}>
                             <i className={this.props.bookmarked ? "fas fa-bookmark" : "far fa-bookmark"} />
                         </span>
-                        {spell.type} {spell.level}
+                        {cardSize ? (spell.type.substr(0,2)) : (spell.type)} {spell.level}
                     </span>
                 </div>
                 <ul className="traits">
-                    {spell.traits.map((t, index) => <Trait key={index} trait={t} />)}
+                    {spell.type !== "Condition" && spell.traits.map((t, index) => <Trait key={index} trait={t} />)}
                 </ul>
+                {
+                (headerTokens.length > 0 || spell['saving throw'] || spell['defense'] || spell['rolls']) && 
                 <div className="header">
-                    {headerTokens.map((t) => {
-                        return <span key={t.title} className="headerElement"><strong>{t.title}</strong> {t.value}</span>
-                    })}
-                    {/* Legacy */ spell['saving throw'] && <div><span className="headerElement"><strong>Saving Throw</strong> {spell['saving throw']}</span></div>}
-                    {spell['defense'] && <div><span className="headerElement"><strong>Defense</strong> {spell['defense']}</span></div>}
+                {headerTokens.map((t) => {
+                    return <span key={t.title} className="headerElement"><strong>{t.title}</strong> {t.value}</span>
+                })}
+                {/* Legacy */ spell['saving throw'] && <div><span className="headerElement"><strong>Saving Throw</strong> {spell['saving throw']}</span></div>}
+                {spell['defense'] && <div><span className="headerElement"><strong>Defense</strong> {spell['defense']}</span></div>}
+                {spell['rolls'] && <div><span className="headerElement"><strong>Rolls</strong> {spell['rolls']}</span></div>}
                 </div>
+                }
                 <div className="body">
                     {bodySections.map((s, index) => {
                         return <div key={index} className={s.className}>{s.title}<ReactMarkdown source={s.text} plugins={RemarkPlugins} renderers={RemarkRenderers} /></div>

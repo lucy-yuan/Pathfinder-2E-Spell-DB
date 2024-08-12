@@ -6,6 +6,10 @@
         height: 4.4in;
         break-inside: avoid;
     }
+    div.cardSize {
+        padding: 2mm;
+        max-height: 112mm;
+    }
     .spell-search {
         display: none;
     }
@@ -25,6 +29,11 @@
             linear-gradient(to top, black 0.5px, transparent 0.5px) 100% 100%;
         background-repeat: no-repeat;
         background-size: 20px 20px;
+    }
+    div:has(> .cardSize) {
+        height: 116.76mm;
+        width: 83.39mm;
+        flex: none;
     }    
     .bookmark {
         display: none;
@@ -67,6 +76,7 @@ $light-bg: #fff;
 $light-text: #212529;
 $dark-bg: #1A1A1A;
 $dark-text: #EEE;
+$dark-title: #FFF;
 
 $unprepareIcon: #dc3545;
 $prepareIcon: #28a745;
@@ -275,7 +285,7 @@ a { cursor: pointer; }
 
             .dark & {
                 color: $dark-text;
-                border-color: #FFF;
+                border-color: $dark-title;
             }
         }
     }
@@ -298,7 +308,7 @@ a { cursor: pointer; }
 
         font-family: 'Oswald', sans-serif;
         font-size: 1.5rem;
-        line-height: 1.2;
+        line-height: 1;
         text-transform: uppercase;
 
         .spellName {
@@ -311,14 +321,14 @@ a { cursor: pointer; }
 
         .dark & {
             color: $dark-text;
-            border-color: #FFF;
+            border-color: $dark-title;
         }
 
         .spellClass {
             display: block;
             float: right;
             white-space: nowrap;
-
+            
             .bookmark {
                 padding: 0 10px 0 0;
 
@@ -377,7 +387,12 @@ a { cursor: pointer; }
         font-family: 'ff-good-web-pro', sans-serif;
         font-size: 1rem;
         line-height: 1.2;
-        border-bottom: 1px solid #000000;
+        border-bottom: 1px solid $title;
+
+        .dark & {
+            color: $dark-text;
+            border-color: $dark-title;
+        }
 
         .castingToken, .headerElement {
             &::after {
